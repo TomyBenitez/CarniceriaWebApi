@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CarniceriaWebApi.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class AppVentasMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -66,32 +66,11 @@ namespace CarniceriaWebApi.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Nombre = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Monto = table.Column<decimal>(type: "decimal(65,30)", nullable: false)
+                    Monto = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Productos", x => x.Id);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Carritos",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    ProductosId = table.Column<int>(type: "int", nullable: false),
-                    ProductoId = table.Column<int>(type: "int", nullable: true),
-                    Cantidad = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Carritos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Carritos_Productos_ProductoId",
-                        column: x => x.ProductoId,
-                        principalTable: "Productos",
-                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -103,18 +82,13 @@ namespace CarniceriaWebApi.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     CobradorId = table.Column<int>(type: "int", nullable: false),
                     ClienteId = table.Column<int>(type: "int", nullable: false),
-                    CarritoId = table.Column<int>(type: "int", nullable: false),
+                    ProductoId = table.Column<int>(type: "int", nullable: false),
+                    Cantidad = table.Column<int>(type: "int", nullable: false),
                     Fecha = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Ventas", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Ventas_Carritos_CarritoId",
-                        column: x => x.CarritoId,
-                        principalTable: "Carritos",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Ventas_Clientes_ClienteId",
                         column: x => x.ClienteId,
@@ -127,18 +101,14 @@ namespace CarniceriaWebApi.Migrations
                         principalTable: "Cobradores",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Ventas_Productos_ProductoId",
+                        column: x => x.ProductoId,
+                        principalTable: "Productos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Carritos_ProductoId",
-                table: "Carritos",
-                column: "ProductoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Ventas_CarritoId",
-                table: "Ventas",
-                column: "CarritoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Ventas_ClienteId",
@@ -149,6 +119,11 @@ namespace CarniceriaWebApi.Migrations
                 name: "IX_Ventas_CobradorId",
                 table: "Ventas",
                 column: "CobradorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ventas_ProductoId",
+                table: "Ventas",
+                column: "ProductoId");
         }
 
         /// <inheritdoc />
@@ -156,9 +131,6 @@ namespace CarniceriaWebApi.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Ventas");
-
-            migrationBuilder.DropTable(
-                name: "Carritos");
 
             migrationBuilder.DropTable(
                 name: "Clientes");

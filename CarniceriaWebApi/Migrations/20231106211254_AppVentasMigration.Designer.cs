@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarniceriaWebApi.Migrations
 {
     [DbContext(typeof(CarniceriaDbContext))]
-    [Migration("20231002172946_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231106211254_AppVentasMigration")]
+    partial class AppVentasMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,7 +22,7 @@ namespace CarniceriaWebApi.Migrations
                 .HasAnnotation("ProductVersion", "7.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("Sistema_Carnicería.Models.Carrito", b =>
+            modelBuilder.Entity("CarniceriaWebApi.Models.Venta", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -31,17 +31,27 @@ namespace CarniceriaWebApi.Migrations
                     b.Property<int>("Cantidad")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProductoId")
+                    b.Property<int>("ClienteId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductosId")
+                    b.Property<int>("CobradorId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("ProductoId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClienteId");
+
+                    b.HasIndex("CobradorId");
+
                     b.HasIndex("ProductoId");
 
-                    b.ToTable("Carritos");
+                    b.ToTable("Ventas");
                 });
 
             modelBuilder.Entity("Sistema_Carnicería.Models.Cliente", b =>
@@ -108,7 +118,7 @@ namespace CarniceriaWebApi.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Monto")
-                        .HasColumnType("decimal(65,30)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -119,52 +129,8 @@ namespace CarniceriaWebApi.Migrations
                     b.ToTable("Productos");
                 });
 
-            modelBuilder.Entity("Sistema_Carnicería.Models.Venta", b =>
+            modelBuilder.Entity("CarniceriaWebApi.Models.Venta", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("CarritoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ClienteId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CobradorId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Fecha")
-                        .HasColumnType("datetime(6)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CarritoId");
-
-                    b.HasIndex("ClienteId");
-
-                    b.HasIndex("CobradorId");
-
-                    b.ToTable("Ventas");
-                });
-
-            modelBuilder.Entity("Sistema_Carnicería.Models.Carrito", b =>
-                {
-                    b.HasOne("Sistema_Carnicería.Models.Producto", "Producto")
-                        .WithMany()
-                        .HasForeignKey("ProductoId");
-
-                    b.Navigation("Producto");
-                });
-
-            modelBuilder.Entity("Sistema_Carnicería.Models.Venta", b =>
-                {
-                    b.HasOne("Sistema_Carnicería.Models.Carrito", "Carrito")
-                        .WithMany()
-                        .HasForeignKey("CarritoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Sistema_Carnicería.Models.Cliente", "Cliente")
                         .WithMany()
                         .HasForeignKey("ClienteId")
@@ -177,11 +143,17 @@ namespace CarniceriaWebApi.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Carrito");
+                    b.HasOne("Sistema_Carnicería.Models.Producto", "Producto")
+                        .WithMany()
+                        .HasForeignKey("ProductoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Cliente");
 
                     b.Navigation("Cobrador");
+
+                    b.Navigation("Producto");
                 });
 #pragma warning restore 612, 618
         }

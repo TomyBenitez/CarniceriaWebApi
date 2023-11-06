@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CarniceriaWebApi.Context;
-using Sistema_Carnicería.Models;
+using CarniceriaWebApi.Models;
 
 namespace CarniceriaWebApi.Controllers
 {

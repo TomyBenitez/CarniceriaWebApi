@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Sistema_Carnicería.Models;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Sistema_Carnicería.Models
+namespace CarniceriaWebApi.Models
 {
     public class Venta
     {
@@ -17,8 +13,10 @@ namespace Sistema_Carnicería.Models
         public int ClienteId { get; set; }
         public Cliente? Cliente { get; set; }
         [Required]
-        public int CarritoId { get; set; }
-        public Carrito? Carrito { get; set; }
+        public int ProductoId { get; set; }
+        public Producto? Producto { get; set; }
+
+        public int Cantidad { get; set; }
         public DateTime Fecha { get; set; }
     }
 }

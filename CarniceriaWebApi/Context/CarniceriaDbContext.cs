@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CarniceriaWebApi.Models;
+using Microsoft.EntityFrameworkCore;
 using Sistema_Carnicería.Models;
 
 namespace CarniceriaWebApi.Context
@@ -13,7 +14,6 @@ namespace CarniceriaWebApi.Context
         public virtual DbSet<Cliente> Clientes { get; set; }
         public virtual DbSet<Cobrador> Cobradores { get; set; }
         public virtual DbSet<Producto> Productos { get; set; }
-        public virtual DbSet<Carrito> Carritos { get; set; }
         public virtual DbSet<Venta> Ventas { get; set; }
     }
 }
