@@ -1,5 +1,6 @@
 ﻿using Sistema_Carnicería.Models;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CarniceriaWebApi.Models
 {
@@ -18,6 +19,8 @@ namespace CarniceriaWebApi.Models
 
         public int Cantidad { get; set; }
         public DateTime Fecha { get; set; }
+
+        [Column(TypeName = "decimal(18,2)")]
         public decimal MontoTotal { get; set; }    
     }
 }

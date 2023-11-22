@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CarniceriaWebApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+31f7ff5a8aeb6b1027953355e5b496e626224ad0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("CarniceriaWebApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CarniceriaWebApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
