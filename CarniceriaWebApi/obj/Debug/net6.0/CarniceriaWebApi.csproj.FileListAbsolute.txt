@@ -299,3 +299,4 @@ C:\Users\TomyV-Pc-Torre\source\repos\CarniceriaWebApi\CarniceriaWebApi\obj\Debug
 C:\Users\TomyV-Pc-Torre\source\repos\CarniceriaWebApi\CarniceriaWebApi\obj\Debug\net6.0\CarniceriaWebApi.pdb
 C:\Users\TomyV-Pc-Torre\source\repos\CarniceriaWebApi\CarniceriaWebApi\obj\Debug\net6.0\CarniceriaWebApi.genruntimeconfig.cache
 C:\Users\TomyV-Pc-Torre\source\repos\CarniceriaWebApi\CarniceriaWebApi\obj\Debug\net6.0\ref\CarniceriaWebApi.dll
+C:\Users\TomyV-Pc-Torre\source\repos\CarniceriaWebApi\CarniceriaWebApi\obj\Debug\net6.0\CarniceriaWebApi.sourcelink.json

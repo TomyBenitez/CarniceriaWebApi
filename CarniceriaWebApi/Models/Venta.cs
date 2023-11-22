@@ -18,5 +18,6 @@ namespace CarniceriaWebApi.Models
 
         public int Cantidad { get; set; }
         public DateTime Fecha { get; set; }
+        public decimal MontoTotal { get; set; }    
     }
 }

@@ -37,6 +37,9 @@ namespace CarniceriaWebApi.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<decimal>("MontoTotal")
+                        .HasColumnType("decimal(65,30)");
+
                     b.Property<int>("ProductoId")
                         .HasColumnType("int");
 

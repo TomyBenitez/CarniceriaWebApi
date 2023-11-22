@@ -84,7 +84,8 @@ namespace CarniceriaWebApi.Migrations
                     ClienteId = table.Column<int>(type: "int", nullable: false),
                     ProductoId = table.Column<int>(type: "int", nullable: false),
                     Cantidad = table.Column<int>(type: "int", nullable: false),
-                    Fecha = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    Fecha = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    MontoTotal = table.Column<decimal>(type: "decimal(65,30)", nullable: false)
                 },
                 constraints: table =>
                 {

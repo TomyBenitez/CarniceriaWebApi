@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarniceriaWebApi.Migrations
 {
     [DbContext(typeof(CarniceriaDbContext))]
-    [Migration("20231106211254_AppVentasMigration")]
+    [Migration("20231121184449_AppVentasMigration")]
     partial class AppVentasMigration
     {
         /// <inheritdoc />
@@ -39,6 +39,9 @@ namespace CarniceriaWebApi.Migrations
 
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<decimal>("MontoTotal")
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<int>("ProductoId")
                         .HasColumnType("int");
